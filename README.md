@@ -6,6 +6,19 @@ This repository includes code & resources for students attending my *Generative 
 
 - [Tools & Prerequisites](#tools--prerequisites)
 
+- [Installing the Prerequisites](#installing-the-prerequisites)
+
+  - [Complete Installation Guide](#complete-installation-guide)
+
+- [Installing `canvas-sketch` CLI](#installing-canvas-sketch-cli)
+
+- [Command-Line Tips & Suggestions](#command-line-tips--suggestions)
+
+- [Cloning & Running Examples](#cloning--running-examples)
+
+- [Other Modules for Creative Coding](#other-modules-for-creative-coding)
+
+- [Further Reading](#further-reading)
 
 # Tools & Prerequisites
 
@@ -13,47 +26,90 @@ Here is a list of tools, software and libraries that will be used during the wor
 
 | Tool | Documentation | Description |
 |---|---|---|
-| [Node.js](https://nodejs.org/en/) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used for running command-line JavaScript tools
-| [npm](https://npmjs.com/) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used to install third-party dependencies and tools
 | *Code Editor* | | A JavaScript code editor, [VSCode](https://code.visualstudio.com/) is recommended
 | *Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is reocmmended
-| *Command-Line* | [[hints](#command-line-tips)] | A command-line application like Terminal (macOS) or [cmder](http://cmder.net/) (Windows)
 | *Canvas API* | [[docs](https://developer.mozilla.org/kab/docs/Web/API/Canvas_API)] | The HTML5 `<canvas>` API, built into all browsers 
+| *Command-Line* | [[hints](#command-line-tips)] | A command-line application like Terminal (macOS) or [cmder](http://cmder.net/) (Windows)
+| [Node.js](https://nodejs.org/en/) (v8+) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used for running command-line JavaScript tools
+| [npm](https://npmjs.com/) (v5+) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used to install third-party dependencies and tools
+| [`canvas-sketch`](https://github.com/mattdesl/canvas-sketch/) | [[docs](https://github.com/mattdesl/canvas-sketch/tree/master/docs)] | A development tool for Generative Art
+| [`canvas-sketch-util`](https://github.com/mattdesl/canvas-sketch-util/) | [[docs](https://github.com/mattdesl/canvas-sketch-util/tree/master/docs)] | Utilities for Math & Random Number Generation
+| [ThreeJS](https://threejs.org/) | [[docs](https://threejs.org/docs/)] | A 3D rendering engine for WebGL
 
+# Installing the Prerequisites 
 
+Before starting the workshop, make sure you have installed and set up:
 
-<!-- - [Node.js](https://nodejs.org/en/) [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)]
+- A browser, Chrome recommenedd
+- A code editor, VSCode recommended
+- A terminal application (like Terminal, cmder or cmd.exe)
+- Node.js 8+ and npm 5+
 
-  - Will be used for running command-line JavaScript tools
+If you already have these tools installed, you can use the `--version` flag to make sure you have at least `node@8` and `npm@5`:
 
-- [npm](https://www.npmjs.com/) [[docs](https://docs.npmjs.com/)]
+```sh
+npm --version
+node --version
+```
 
-  - Will be used to install third-party dependencies and tools
+### Complete Installation Guide
 
-- A Command-Line Application [[tips](#tips-for-using-the-command-line)]
+If you haven't installed these yet, you can find more instructions here:
 
-  - e.g. `Terminal.app` in macOS or [cmder](http://cmder.net/) in Windows
+- [Installation Guide](./docs/installation.md)
 
-- Canvas API [[docs](https://developer.mozilla.org/kab/docs/Web/API/Canvas_API)] 
+# Installing `canvas-sketch` CLI
 
-  - 2D and WebGL features on the HTML5 `<canvas>` tag, built-into all browsers
+We will be using [`canvas-sketch`](https://github.com/mattdesl/canvas-sketch/) and its command-line interface (CLI) during the workshop.
 
-- [`canvas-sketch`](https://github.com/mattdesl/canvas-sketch/) [[docs](https://github.com/mattdesl/canvas-sketch/tree/master/docs)]
+To install the CLI with npm, use the `--global` or `-g` flag like so:
 
-  - A development tool for Generative Art
+```sh
+npm install canvas-sketch-cli --global
+```
 
-- [`canvas-sketch-util`](https://github.com/mattdesl/canvas-sketch-util/) [[docs](https://github.com/mattdesl/canvas-sketch-util/tree/master/docs)]
+> :bulb: Note the `-cli` suffix in the name; this tells npm to install the CLI tool, not the code library.
 
-  - Utilities for Math & Random Number Generation
+# Command-Line Tips & Suggestions
 
-- [ThreeJS](https://threejs.org/) [[docs](https://threejs.org/docs/)]
+If you are new to the command-line, you can read more details here:
 
-  - A Rendering Engine for WebGL -->
+- [Command-Line Tips & Suggestions](./docs/command-line.md)
 
+# Cloning & Running Examples
+
+During the workshop, you won't need to clone and run this repository locally. However, if you wish to do so, you can find more instructions here:
+
+- [Cloning & Running Examples](./docs/cloning.md)
+
+# Other Modules for Creative Coding
+
+This workshop encourages students to make use of [npm](https://www.npmjs.com) modules to build complex and interesting artworks.
+
+If you find a module you want to use, like [point-in-polygon](https://www.npmjs.com/package/point-in-polygon), you can install it from your project folder like so:
+
+```sh
+npm install point-in-polygon
+```
+
+Below are some nice modules for creative coding & generative art:
+
+- [point-in-polygon](https://www.npmjs.com/package/point-in-polygon) - test if 2D point is within a polygon
+- [nice-color-palettes](https://www.npmjs.com/package/nice-color-palettes) - a collection of 1000 beautiful color palettes
+- [gl-matrix](https://www.npmjs.com/package/gl-matrix) - 2D and 3D vector & matrix math utilities
+- [poisson-disk-sampling](https://www.npmjs.com/package/poisson-disk-sampling) - can be used for 2D and 3D object placements
+- [delaunay-triangulate](https://www.npmjs.com/package/delaunay-triangulate) - 2D and 3D triangulation
+- [simplify-path](https://www.npmjs.com/package/simplify-path) - simplify a 2D polyline path
+- [chaikin-smooth](https://www.npmjs.com/package/chaikin-smooth) - smooth a 2D polyline path
+- [earcut](https://www.npmjs.com/package/earcut) - fast 2D and 3D polygon triangulation
+- [voronoi-diagram](https://www.npmjs.com/package/voronoi-diagram) - for 2D and 3D voronoi diagrams
+- [svg-mesh-3d](https://github.com/mattdesl/svg-mesh-3d) - convert SVG path string to a 3D mesh
+- [eases](https://www.npmjs.com/package/eases) - a set of common easing functions
+- [bezier-easing](https://www.npmjs.com/package/bezier-easing) - create cubic bezier curve functions
 
 # Further Reading
 
-More links to generative art & creative coding.
+More links to generative art & creative coding:
 
 - Generative Art
 

@@ -1,8 +1,12 @@
-# Source Code
+#### <sup>:closed_book: [workshop-generative-art](../README.md) → Cloning & Running Examples</sup>
 
-This folder contains some code examples similar to the artworks we will be creating during the workshop.
+---
 
-Each artwork in this `src` folder is contained in a single JavaScript file, and can be run locally with the [canvas-sketch-cli](https://github.com/mattdesl/canvas-sketch-cli) tool.
+# Cloning & Running Examples
+
+The [`src/`](../src/) folder contains some code examples similar to the artworks we will be creating during the workshop.
+
+Each artwork in the `src` folder is contained in a single JavaScript file, and can be run locally with the [canvas-sketch-cli](https://github.com/mattdesl/canvas-sketch-cli) tool.
 
 # Contents
 
@@ -24,7 +28,7 @@ The first step is to clone this repository. Navigate with `cd` to a folder of yo
 git clone https://github.com/mattdesl/workshop-generative-art.git
 ```
 
-This will create a new folder called `workshop-generative-art` and copy all the source code into it. Next, move into the folder and install its dependencies:
+This will create a new folder called `workshop-generative-art` and download all the source code into it. Next, move into the folder and install its dependencies:
 
 ```sh
 # Move into the folder
@@ -36,17 +40,19 @@ npm install
 
 # Installing `canvas-sketch-cli`
 
-If you haven't already, you will need to install the command-line tool *globally* like so:
+If you haven't already, you will need to install the `canvas-sketch` command-line tool *globally* like so:
 
 ```sh
 npm install canvas-sketch-cli --global
 ```
 
+> :bulb: Note the `-cli` suffix in the name; this tells npm to install the CLI tool, not the code library.
+
 Once installed, you won't need to run this again unless you want to update to a new version of `canvas-sketch-cli`.
 
 # Running & Editing a Sketch
 
-Once you've installed the CLI tool globally, `cd` into this repository folder and you can run each individual sketch like so:
+Once you've installed the CLI tool globally, `cd` into this repository folder and you can run each individual sketch with the `canvas-sketch` command, like so:
 
 ```sh
 canvas-sketch src/grid-basic.js --open
@@ -75,3 +81,7 @@ canvas-sketch src/my-new-sketch.js --build --inline
 Try double-clicking the exported HTML file to see your website. This file can be shared on your favourite website host, like [Neocities](https://neocities.org/).
 
 You can also turn on debugging (source maps) with the `--no-compress` option.
+
+## 
+
+#### <sup>[← Back to Documentation](../README.md)
