@@ -1,8 +1,0 @@
-sudo: false
-language: node_js
-node_js:
-  - "4"
-  - "node"
-script:
-  - npm test
-  - npm run coveralls
