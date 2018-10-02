@@ -18,6 +18,12 @@ This guide will run you through installing all the tools and prerequisites requi
 
   - [`canvas-sketch`](#canvas-sketch)
 
+  - [`canvas-sketch-util`](#canvas-sketch-util)
+
+  - [ThreeJS](#threejs)
+
+  - [Other Dependencies](#other-dependencies)
+
 # Code Editor
 
 If you don't have a JavaScript code editor, you can download [VSCode](https://code.visualstudio.com/) from its website.
