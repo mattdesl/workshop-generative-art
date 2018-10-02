@@ -15,8 +15,9 @@ Here is a list of tools, software and libraries that will be used during the wor
 |---|---|---|
 | [Node.js](https://nodejs.org/en/) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used for running command-line JavaScript tools
 | [npm](https://npmjs.com/) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used to install third-party dependencies and tools
-| *A Command-Line* | [[hints](#command-line-tips)] | A command-line application like `Terminal.app`
-| *A Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is reocmmended
+| *Code Editor* | | A JavaScript code editor, [VSCode](https://code.visualstudio.com/) is recommended
+| *Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is reocmmended
+| *Command-Line* | [[hints](#command-line-tips)] | A command-line application like `Terminal.app` (macOS) or [cmder](http://cmder.net/) (Windows)
 | *Canvas API* | [[docs](https://developer.mozilla.org/kab/docs/Web/API/Canvas_API)] | The HTML5 `<canvas>` API, built into all browsers 
 
 
