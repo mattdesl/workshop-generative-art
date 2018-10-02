@@ -19,6 +19,7 @@
     "gl-matrix": "^2.8.1",
     "is-promise": "^2.1.0",
     "nice-color-palettes": "^2.0.0",
+    "opentype.js": "^0.10.0",
     "seed-random": "^2.2.0",
     "xhr": "^2.5.0"
   }
