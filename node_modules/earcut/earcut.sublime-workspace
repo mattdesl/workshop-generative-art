@@ -1,0 +1,1416 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"draw",
+				"drawPoint"
+			],
+			[
+				"hole",
+				"holeArea"
+			],
+			[
+				"test",
+				"testPoints"
+			],
+			[
+				"log",
+				"logPoly"
+			],
+			[
+				"inter",
+				"intersects"
+			],
+			[
+				"outer",
+				"outerNode"
+			],
+			[
+				"elim",
+				"eliminateHoles"
+			],
+			[
+				"num",
+				"numTriangles"
+			],
+			[
+				"polygon",
+				"polygonArea"
+			],
+			[
+				"tri",
+				"triangleArea"
+			],
+			[
+				"tria",
+				"triangles"
+			],
+			[
+				"poly",
+				"polygonArea"
+			],
+			[
+				"pol",
+				"polygonArea"
+			],
+			[
+				"local",
+				"locallyReflex"
+			],
+			[
+				"ring",
+				"ringArea"
+			],
+			[
+				"out",
+				"outerArea"
+			],
+			[
+				"fo",
+				"for\tfor (…) {…}"
+			],
+			[
+				"for",
+				"for\tfor (…) {…}"
+			],
+			[
+				"f",
+				"f\tAnonymous Function"
+			],
+			[
+				"clo",
+				"clockwise"
+			],
+			[
+				"linke",
+				"linkedList"
+			],
+			[
+				"sign",
+				"signedArea"
+			],
+			[
+				"e",
+				"equals"
+			],
+			[
+				"equal",
+				"equals"
+			],
+			[
+				"filter",
+				"filterPoints"
+			],
+			[
+				"bri",
+				"bridgeNode"
+			],
+			[
+				"filterP",
+				"filterPoint"
+			],
+			[
+				"ver",
+				"verifyFilter"
+			],
+			[
+				"filetr",
+				"filterPoint"
+			],
+			[
+				"locall",
+				"locallyInside"
+			],
+			[
+				"loca",
+				"locallyInside"
+			],
+			[
+				"eq",
+				"equals"
+			],
+			[
+				"point",
+				"pointInTriangle2"
+			],
+			[
+				"prev",
+				"prevZ"
+			],
+			[
+				"remove",
+				"removeNode"
+			],
+			[
+				"maxT",
+				"maxTX"
+			],
+			[
+				"min",
+				"minTX"
+			],
+			[
+				"or",
+				"orient"
+			],
+			[
+				"left",
+				"leftmost"
+			],
+			[
+				"_upda",
+				"_updateTransform"
+			],
+			[
+				"_remove",
+				"_removeAllTiles"
+			],
+			[
+				"_reset",
+				"_resetAll"
+			],
+			[
+				"_update",
+				"_updateTransform"
+			],
+			[
+				"pane",
+				"panePos"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/earcut.js",
+			"settings":
+			{
+				"buffer_size": 18289,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "'use strict';\n\nmodule.exports = TinyQueue;\n\nfunction TinyQueue(data, compare) {\n    if (!(this instanceof TinyQueue)) return new TinyQueue(data, compare);\n\n    this.data = data || [];\n    this.length = this.data.length;\n    this.compare = compare || defaultCompare;\n\n    if (data) for (var i = Math.floor(this.length / 2); i >= 0; i--) this._down(i);\n}\n\nfunction defaultCompare(a, b) {\n    return a < b ? -1 : a > b ? 1 : 0;\n}\n\nTinyQueue.prototype = {\n\n    push: function (item) {\n        this.data.push(item);\n        this.length++;\n        this._up(this.length - 1);\n    },\n\n    pop: function () {\n        var top = this.data[0];\n        this.data[0] = this.data[this.length - 1];\n        this.length--;\n        this.data.pop();\n        this._down(0);\n        return top;\n    },\n\n    peek: function () {\n        return this.data[0];\n    },\n\n    _up: function (pos) {\n        var data = this.data,\n            compare = this.compare;\n\n        while (pos > 0) {\n            var parent = Math.floor((pos - 1) / 2);\n            if (compare(data[pos], data[parent]) < 0) {\n                swap(data, parent, pos);\n                pos = parent;\n\n            } else break;\n        }\n    },\n\n    _down: function (pos) {\n        var data = this.data,\n            compare = this.compare,\n            len = this.length;\n\n        while (true) {\n            var left = 2 * pos + 1,\n                right = left + 1,\n                min = pos;\n\n            if (left < len && compare(data[left], data[min]) < 0) min = left;\n            if (right < len && compare(data[right], data[min]) < 0) min = right;\n\n            if (min === pos) return;\n\n            swap(data, min, pos);\n            pos = min;\n        }\n    }\n};\n\nfunction swap(data, i, j) {\n    var tmp = data[i];\n    data[i] = data[j];\n    data[j] = tmp;\n}\n",
+			"file": "node_modules/tinyqueue/index.js",
+			"file_size": 1803,
+			"file_write_time": 130996798290000000,
+			"settings":
+			{
+				"buffer_size": 1803,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n// bridges\ndrawPoly([[[outerNode.x, outerNode.y], [hole.x, hole.y]]], 'blue');\ndrawPoly([[\n    [outerNode.prev.x, outerNode.prev.y],\n    [outerNode.x, outerNode.y],\n    [outerNode.next.x, outerNode.next.y]]], 'cyan');\n\ndrawPoly([[[a.x, a.y], [p.x, p.y]]], 'red');\ndrawPoly([[[p.next.x, p.next.y], [b.x, b.y]]], 'blue');\n\n// splits\ndrawPoly([[[a.x, a.y], [b.x, b.y]]], 'blue');\ndrawPoint([a.x, a.y]);\ndrawPoint([b.x, b.y]);\n\nfunction logPoly(ear) {\n    var poly = [];\n    var stop = ear;\n    do {\n        poly.push([ear.x, ear.y]);\n        ear = ear.next;\n    } while (ear !== stop);\n    console.log(JSON.stringify(poly));\n}\n\n[\n[[3304,1016],[3264,1032],[3280,1056],[3352,1072],[3400,1024],[3448,1008],[3472,1016],[3480,1056],[3432,1064],[3424,1096],[3392,1128],[3368,1120],[3368,1152],[3392,1192],[3368,1192],[3336,1144],[3352,1192],[3344,1224],[3288,1256],[3328,1336],[3328,1408],[3312,1416],[3312,1480],[3280,1592],[3296,1688],[3256,1736],[3264,1792],[3248,1800],[3240,1864],[3216,1880],[3160,1880],[3136,1864],[3128,1896],[3056,1896],[3048,1864],[3008,1832],[2976,1864],[3040,1896],[3040,1928],[3072,1992],[3040,2032],[3040,2056],[3064,2064],[3096,2040],[3112,1920],[3176,2000],[3192,1992],[3200,1936],[3216,1936],[3208,1992],[3224,2032],[3224,2112],[3200,2192],[3176,2216],[3152,2216],[3144,2248],[3104,2256],[3104,2312],[3080,2304],[3072,2328],[3040,2320],[3016,2360],[2984,2360],[2976,2400],[3048,2416],[3056,2376],[3096,2368],[3104,2344],[3248,2352],[3232,2304],[3272,2304],[3288,2328],[3312,2328],[3384,2264],[3416,2280],[3432,2240],[3496,2248],[3512,2216],[3536,2224],[3560,2264],[3488,2296],[3456,2328],[3416,2328],[3408,2352],[3368,2360],[3352,2392],[3384,2400],[3384,2424],[3320,2424],[3352,2464],[3400,2456],[3408,2440],[3464,2440],[3496,2456],[3512,2440],[3512,2400],[3568,2392],[3600,2360],[3632,2368],[3616,2384],[3624,2400],[3648,2400],[3656,2376],[3728,2368],[3712,2416],[3760,2416],[3760,2376],[3704,2336],[3688,2288],[3688,2272],[3712,2272],[3704,2240],[3736,2240],[3752,2224],[3784,2232],[3800,2264],[3856,2248],[3864,2280],[3896,2304],[3912,2360],[3880,2360],[3864,2376],[3880,2416],[3800,2416],[3800,2448],[3824,2464],[3776,2464],[3784,2528],[3728,2520],[3728,2496],[3760,2496],[3768,2464],[3752,2448],[3712,2448],[3704,2416],[3632,2448],[3608,2448],[3600,2432],[3536,2432],[3536,2480],[3432,2520],[3424,2552],[3384,2552],[3352,2592],[3312,2568],[3288,2568],[3288,2584],[3264,2576],[3288,2520],[3360,2544],[3320,2472],[3264,2472],[3264,2488],[3288,2496],[3272,2512],[3224,2504],[3200,2480],[3184,2424],[3208,2392],[3184,2392],[3184,2408],[3144,2392],[3176,2432],[3184,2488],[3144,2560],[3088,2592],[3088,2608],[3128,2616],[3120,2664],[3096,2656],[3096,2640],[3064,2640],[3056,2608],[3024,2616],[3024,2632],[2992,2648],[2992,2680],[3024,2696],[3080,2672],[3104,2696],[3128,2696],[3144,2712],[3144,2744],[3112,2728],[3080,2768],[3072,2744],[3000,2720],[2984,2680],[2928,2664],[2936,2688],[2984,2720],[2976,2760],[2936,2768],[2936,2792],[2952,2800],[2920,2808],[2944,2864],[3016,2864],[3024,2752],[3072,2768],[3080,2808],[3040,2896],[3056,2936],[3040,3056],[3064,3096],[3040,3096],[3032,3056],[2992,3056],[2992,3088],[3024,3096],[3016,3112],[2984,3128],[2920,3128],[2880,3152],[2912,3288],[2936,3296],[2960,3360],[3000,3352],[3008,3272],[3040,3240],[3032,3208],[3096,3192],[3152,3200],[3200,3168],[3200,3144],[3160,3136],[3152,3112],[3088,3096],[3080,3048],[3120,3048],[3136,3072],[3176,3088],[3184,3112],[3200,3104],[3192,3080],[3248,3040],[3336,3064],[3352,3112],[3320,3120],[3320,3136],[3360,3168],[3368,3200],[3384,3200],[3408,3128],[3480,3120],[3472,3096],[3408,3072],[3384,3032],[3320,3032],[3296,3000],[3288,2968],[3312,2960],[3320,2920],[3336,2912],[3328,2864],[3296,2832],[3264,2824],[3256,2848],[3280,2904],[3280,2952],[3240,2920],[3232,2888],[3208,2880],[3224,2976],[3184,2960],[3168,2912],[3144,2896],[3152,2816],[3176,2808],[3160,2768],[3176,2720],[3160,2696],[3184,2664],[3168,2640],[3200,2648],[3200,2712],[3216,2712],[3208,2752],[3256,2736],[3296,2680],[3296,2664],[3240,2664],[3232,2608],[3200,2592],[3224,2584],[3280,2600],[3376,2672],[3416,2672],[3432,2688],[3432,2728],[3400,2792],[3368,2800],[3352,2776],[3304,2784],[3304,2800],[3384,2824],[3400,2864],[3456,2904],[3480,2944],[3480,2960],[3464,2960],[3408,2928],[3400,2952],[3440,2968],[3440,2992],[3376,2984],[3376,3016],[3448,3008],[3472,2968],[3488,2976],[3488,3000],[3528,3000],[3512,2984],[3520,2944],[3504,2936],[3512,2920],[3536,2920],[3504,2808],[3504,2784],[3520,2776],[3544,2784],[3568,2888],[3632,2888],[3664,2952],[3736,2920],[3736,2904],[3696,2896],[3696,2864],[3768,2880],[3792,2944],[3744,2952],[3720,2976],[3720,3000],[3760,3016],[3760,2976],[3784,2984],[3792,3008],[3824,3000],[3816,3024],[3792,3024],[3768,3048],[3768,3072],[3784,3088],[3816,3088],[3816,3048],[3848,3048],[3896,3112],[3896,3192],[3856,3232],[3832,3336],[3800,3360],[3800,3376],[3840,3360],[3856,3376],[3800,3392],[3776,3440],[3720,3432],[3704,3488],[3672,3504],[3616,3504],[3632,3536],[3584,3600],[3584,3656],[3536,3672],[3512,3704],[3448,3704],[3432,3736],[3360,3752],[3336,3792],[3288,3808],[3288,3832],[3416,3824],[3472,3832],[3488,3848],[3464,3880],[3368,3880],[3272,3920],[3288,3936],[3288,3976],[3264,4008],[3232,4016],[3216,4072],[3232,4096],[3169,4096],[3160,4064],[3184,4056],[3184,4000],[3216,4008],[3240,3976],[3256,3920],[3184,3936],[3128,4000],[3008,4024],[3000,4080],[2976,4072],[2968,4032],[2920,4048],[2952,4096],[2824,4096],[2808,4080],[2800,4096],[2268,4096],[2256,4088],[2256,4096],[2229,4096],[2216,4056],[2176,4032],[2176,3992],[2160,3976],[2168,3936],[2264,3952],[2280,3968],[2304,3960],[2376,4024],[2432,4016],[2448,4040],[2488,4040],[2488,4016],[2464,4000],[2472,3944],[2456,3936],[2472,3912],[2496,3912],[2488,3864],[2472,3856],[2448,3880],[2448,3856],[2472,3840],[2472,3808],[2512,3776],[2528,3784],[2536,3824],[2560,3816],[2584,3832],[2568,3784],[2536,3784],[2536,3736],[2560,3728],[2584,3672],[2624,3664],[2648,3680],[2688,3648],[2624,3544],[2632,3504],[2616,3432],[2632,3432],[2632,3456],[2648,3464],[2672,3424],[2672,3392],[2688,3392],[2672,3472],[2680,3560],[2704,3576],[2704,3608],[2728,3608],[2760,3560],[2768,3488],[2800,3440],[2800,3336],[2832,3328],[2824,3232],[2848,3216],[2840,3192],[2808,3192],[2792,3232],[2712,3304],[2640,3304],[2632,3288],[2648,3264],[2592,3240],[2584,3264],[2608,3272],[2576,3320],[2584,3360],[2528,3384],[2512,3336],[2512,3376],[2472,3416],[2472,3448],[2432,3448],[2432,3392],[2392,3448],[2352,3440],[2344,3464],[2320,3464],[2296,3432],[2224,3424],[2296,3416],[2312,3392],[2304,3352],[2344,3352],[2360,3328],[2328,3304],[2248,3312],[2224,3272],[2264,3288],[2352,3280],[2368,3288],[2368,3328],[2400,3344],[2416,3296],[2456,3256],[2456,3208],[2472,3184],[2528,3192],[2544,3176],[2640,3176],[2640,3208],[2664,3192],[2664,3144],[2640,3152],[2640,3096],[2600,3104],[2592,3064],[2624,3040],[2552,3032],[2552,3072],[2536,3088],[2552,3168],[2520,3168],[2512,3136],[2488,3120],[2464,3176],[2448,3144],[2424,3136],[2416,3184],[2328,3160],[2320,3176],[2336,3216],[2304,3192],[2256,3208],[2232,3152],[2208,3136],[2208,3112],[2224,3104],[2216,3064],[2200,3096],[2184,3088],[2200,3000],[2176,2984],[2176,2944],[2160,2936],[2136,2848],[2176,2856],[2200,2888],[2232,2888],[2240,2928],[2256,2936],[2288,2936],[2288,2920],[2256,2904],[2264,2880],[2344,2904],[2376,2936],[2376,2960],[2296,2952],[2256,2968],[2232,3008],[2304,3024],[2312,3056],[2384,3080],[2424,3120],[2464,3072],[2448,3024],[2496,3024],[2512,3008],[2520,2936],[2544,2936],[2560,2904],[2536,2864],[2496,2888],[2440,2888],[2472,2928],[2472,2960],[2456,2968],[2432,2960],[2376,2896],[2376,2864],[2400,2832],[2400,2744],[2384,2736],[2384,2712],[2408,2672],[2408,2608],[2424,2592],[2544,2608],[2552,2568],[2608,2584],[2640,2560],[2664,2576],[2664,2544],[2680,2536],[2728,2520],[2824,2520],[2856,2496],[2888,2504],[2912,2488],[2912,2456],[2896,2440],[2912,2400],[2848,2392],[2872,2376],[2872,2344],[2840,2328],[2824,2328],[2840,2360],[2824,2360],[2816,2392],[2768,2392],[2720,2360],[2696,2392],[2704,2448],[2680,2440],[2656,2464],[2576,2464],[2576,2480],[2616,2504],[2624,2536],[2576,2520],[2552,2480],[2520,2472],[2512,2520],[2472,2544],[2456,2536],[2448,2448],[2456,2424],[2512,2408],[2504,2376],[2520,2360],[2608,2360],[2584,2344],[2576,2296],[2632,2304],[2648,2320],[2792,2312],[2824,2296],[2824,2216],[2864,2240],[2864,2288],[2888,2288],[2912,2256],[2872,2240],[2880,2216],[2904,2232],[2968,2216],[2976,2168],[3040,2152],[3032,2128],[3000,2144],[3040,2072],[3008,2072],[2944,2016],[2952,1944],[2976,1936],[2976,1888],[2944,1880],[2896,1928],[2896,1952],[2872,1960],[2880,1984],[2856,2000],[2864,2056],[2840,2064],[2832,2048],[2800,2048],[2840,2080],[2840,2096],[2784,2112],[2768,2168],[2728,2192],[2728,2224],[2760,2224],[2776,2256],[2704,2256],[2640,2200],[2632,2216],[2648,2232],[2608,2240],[2584,2280],[2544,2304],[2528,2344],[2512,2328],[2512,2296],[2544,2248],[2520,2208],[2568,2192],[2608,2144],[2664,2128],[2648,2008],[2664,1992],[2696,1992],[2752,2024],[2720,1992],[2712,1952],[2736,1912],[2736,1872],[2752,1864],[2768,1888],[2768,1864],[2824,1816],[2824,1768],[2848,1776],[2840,1856],[2864,1848],[2880,1792],[2944,1712],[3000,1712],[2976,1688],[2968,1616],[2992,1608],[3000,1528],[3072,1432],[3080,1464],[3056,1504],[3040,1632],[3104,1640],[3104,1656],[3136,1672],[3136,1712],[3152,1728],[3120,1736],[3080,1664],[3048,1672],[3096,1704],[3080,1768],[3120,1848],[3136,1840],[3120,1784],[3168,1808],[3184,1776],[3168,1672],[3192,1664],[3176,1576],[3208,1544],[3200,1504],[3168,1480],[3200,1456],[3192,1416],[3216,1408],[3224,1320],[3208,1312],[3208,1264],[3224,1256],[3232,1200],[3288,1184],[3288,1160],[3304,1160],[3320,1128],[3288,1088],[3240,1080],[3240,1096],[3208,1096],[3192,1120],[3200,1192],[3184,1192],[3168,1224],[3136,1216],[3096,1240],[3072,1208],[3064,1240],[3000,1256],[3000,1280],[3032,1312],[3088,1288],[3088,1320],[3032,1368],[2984,1376],[2968,1432],[2936,1432],[2936,1384],[2904,1384],[2904,1352],[2824,1368],[2816,1384],[2792,1376],[2792,1360],[2840,1328],[2848,1296],[2872,1280],[2848,1224],[2896,1232],[2944,1168],[3008,1144],[3000,1056],[2976,1024],[2920,1024],[2912,1000],[2880,992],[2872,1056],[2896,1064],[2896,1080],[2928,1064],[2944,1128],[2904,1160],[2904,1192],[2872,1208],[2848,1208],[2856,1168],[2808,1184],[2808,1152],[2848,1152],[2864,1128],[2856,1056],[2824,1048],[2816,1064],[2752,1088],[2728,1152],[2672,1184],[2648,1264],[2688,1288],[2728,1240],[2752,1240],[2752,1288],[2768,1296],[2808,1272],[2816,1304],[2736,1328],[2728,1384],[2760,1376],[2752,1408],[2696,1424],[2704,1400],[2688,1400],[2664,1456],[2696,1480],[2704,1520],[2736,1520],[2744,1496],[2728,1488],[2728,1464],[2768,1464],[2800,1432],[2808,1392],[2824,1392],[2824,1448],[2776,1488],[2776,1520],[2792,1536],[2704,1576],[2704,1528],[2680,1512],[2656,1520],[2648,1496],[2640,1536],[2616,1512],[2576,1536],[2568,1512],[2552,1512],[2536,1536],[2544,1600],[2592,1616],[2568,1624],[2592,1640],[2592,1664],[2560,1672],[2528,1704],[2472,1688],[2472,1712],[2512,1728],[2512,1768],[2480,1792],[2472,1824],[2416,1856],[2416,1824],[2480,1744],[2432,1712],[2448,1672],[2424,1656],[2440,1632],[2480,1616],[2464,1480],[2496,1440],[2544,1416],[2496,1416],[2488,1400],[2584,1328],[2584,1304],[2608,1280],[2600,1144],[2640,1088],[2640,1040],[2656,1032],[2640,1008],[2664,968],[2680,968],[2672,1008],[2696,984],[2736,1008],[2784,1008],[2792,984],[2776,976],[2776,944],[2848,976],[2848,936],[2888,920],[2976,928],[2976,888],[3016,840],[3016,816],[3040,808],[3064,768],[3096,776],[3104,720],[3120,704],[3144,720],[3168,688],[3184,616],[3152,584],[3192,592],[3224,632],[3280,640],[3296,584],[3280,576],[3272,536],[3288,536],[3344,624],[3368,608],[3408,616],[3424,488],[3392,480],[3448,408],[3472,408],[3464,448],[3480,448],[3504,392],[3568,392],[3584,344],[3608,328],[3624,328],[3624,344],[3680,352],[3656,312],[3616,304],[3616,248],[3640,200],[3688,240],[3704,352],[3728,352],[3752,304],[3768,304],[3752,288],[3752,208],[3808,200],[3872,80],[3912,88],[3912,104],[3944,104],[3944,120],[3896,128],[3848,232],[3792,256],[3816,296],[3816,328],[3776,360],[3776,376],[3872,336],[3856,288],[3864,240],[3920,216],[4032,224],[4040,176],[4016,160],[4024,120],[4040,112],[4040,136],[4096,136],[4096,240],[4088,264],[4056,272],[4040,312],[3992,304],[3992,280],[4024,296],[4016,240],[3960,240],[3936,264],[3888,248],[3888,304],[3912,336],[3904,376],[3880,352],[3864,368],[3832,368],[3816,392],[3760,392],[3768,432],[3752,440],[3752,464],[3824,464],[3864,408],[3880,408],[3872,464],[3800,528],[3784,616],[3768,632],[3728,632],[3624,592],[3600,512],[3632,512],[3672,552],[3664,504],[3688,488],[3688,440],[3704,432],[3696,384],[3632,376],[3608,408],[3608,440],[3568,448],[3560,480],[3520,512],[3480,512],[3520,536],[3528,568],[3552,560],[3552,528],[3576,512],[3584,584],[3528,584],[3504,616],[3544,624],[3536,592],[3552,592],[3552,616],[3608,608],[3608,624],[3576,648],[3512,648],[3496,672],[3464,680],[3480,744],[3432,736],[3432,760],[3328,752],[3320,736],[3296,744],[3368,784],[3320,816],[3376,816],[3392,808],[3392,776],[3424,776],[3432,816],[3416,832],[3432,832],[3464,808],[3440,768],[3488,784],[3488,752],[3520,720],[3536,728],[3536,776],[3560,768],[3560,744],[3584,720],[3568,672],[3600,688],[3648,680],[3664,696],[3664,728],[3632,784],[3552,832],[3512,832],[3504,848],[3440,872],[3440,896],[3456,896],[3440,928],[3400,928],[3360,952],[3344,952],[3336,928],[3280,936],[3288,992],[3312,992],[3304,1016]],\n[[3032,3384],[3000,3352],[2984,3432],[2944,3432],[2944,3448],[2976,3448],[2976,3472],[2952,3488],[2952,3520],[2976,3520],[2976,3584],[2952,3608],[2968,3680],[2944,3704],[2920,3704],[2864,3736],[2824,3792],[2752,3784],[2744,3768],[2664,3768],[2664,3784],[2616,3768],[2624,3808],[2664,3856],[2648,3896],[2600,3928],[2600,4048],[2672,4048],[2680,4032],[2648,4000],[2664,3984],[2664,3952],[2688,3936],[2688,3904],[2744,3872],[2824,3880],[2824,3864],[2864,3856],[2920,3776],[2960,3768],[2960,3744],[2936,3728],[2992,3728],[3008,3768],[3088,3816],[3056,3752],[3016,3752],[3000,3720],[3024,3672],[3016,3640],[3032,3592],[3048,3584],[3040,3528],[3056,3520],[3056,3488],[3040,3480],[3040,3408],[3088,3408],[3080,3368],[3056,3344],[3032,3384]],\n[[3080,3320],[3096,3336],[3088,3352],[3096,3376],[3128,3376],[3128,3352],[3104,3344],[3104,3304],[3080,3320]],\n]\n\n",
+			"settings":
+			{
+				"buffer_size": 14212,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/fixtures/issue52.json",
+			"settings":
+			{
+				"buffer_size": 1228,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/test.js",
+			"settings":
+			{
+				"buffer_size": 2326,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/fixtures/shared-points.json",
+			"settings":
+			{
+				"buffer_size": 118,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "viz/viz.js",
+			"settings":
+			{
+				"buffer_size": 32656,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "viz/index.html",
+			"settings":
+			{
+				"buffer_size": 329,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 8194,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1303,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/fixtures/bad-diagonals.json",
+			"settings":
+			{
+				"buffer_size": 125,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/fixtures/eberly-3.json",
+			"settings":
+			{
+				"buffer_size": 920,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"open",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"open re",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"brow",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"vi",
+				"View In Browser"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"git",
+				"Package Control: Install Package"
+			],
+			[
+				"ope",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"resou",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"yaml",
+				"Set Syntax: YAML"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"choose",
+				"SublimeLinter: Choose Lint Mode"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"spa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 431.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/mourner/projects/earcut",
+		"/Users/mourner/projects/earcut/bench",
+		"/Users/mourner/projects/earcut/dist",
+		"/Users/mourner/projects/earcut/src",
+		"/Users/mourner/projects/earcut/viz"
+	],
+	"file_history":
+	[
+		"/Users/mourner/projects/earcut/.travis.yml",
+		"/Users/mourner/projects/earcut/test/fixtures/touching-holes.json",
+		"/Users/mourner/projects/earcut/package.json",
+		"/Users/mourner/Downloads/Serenity2.tmTheme",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Themes/Serenity.tmTheme",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Theme - Otto/schemes/Otto Yesterday.YAML-tmTheme",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Theme - Otto/Otto Yesterday.sublime-theme",
+		"/Users/mourner/projects/earcut/test/test.js",
+		"/Users/mourner/projects/earcut/test/fixtures/eberly-6.json",
+		"/Users/mourner/projects/earcut/test/fixtures/hole-touching-outer.json",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/3024 Color Scheme/3024 Day.tmTheme",
+		"/Users/mourner/projects/earcut/viz/index.html",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Theme - Otto/schemes/Otto Yesterday.tmTheme",
+		"/Users/mourner/projects/earcut/README.md",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/JavaScript/JavaScript.sublime-syntax",
+		"/Users/mourner/projects/earcut/.npmignore",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Otto Yesterday (SL).tmTheme",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/Serenity (SL).tmTheme",
+		"/Users/mourner/projects/earcut/bench/basic.js",
+		"/Users/mourner/projects/earcut/bench/bench.js",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Theme - El Capitan/El Capitan.sublime-theme",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Theme - El Capitan/icons/file_type_default.png",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Installed Packages/Theme - El Capitan.sublime-package",
+		"/Users/mourner/projects/earcut/viz/viz.js",
+		"/Users/mourner/projects/earcut/viz/vector-tile.js",
+		"/Users/mourner/projects/earcut/test/fixtures/reduce-testcase.js",
+		"/Users/mourner/projects/earcut/test/fixtures/hilbert.json",
+		"/Users/mourner/projects/earcut/src/earcut.js",
+		"/Users/mourner/projects/earcut/perf.log",
+		"/Users/mourner/projects/earcut/master2.log",
+		"/Users/mourner/projects/earcut/master.log",
+		"/usr/local/lib/node_modules/mapbox-cli/mapbox.sh",
+		"/Users/mourner/projects/earcut/test/fixtures/issue35.json",
+		"/Users/mourner/projects/earcut/test/fixtures/issue34.json",
+		"/Users/mourner/projects/earcut/test/fixtures/dude.json",
+		"/Users/mourner/projects/earcut/test/fixtures/empty-square.json",
+		"/Users/mourner/projects/earcut/test/fixtures/issue29.json",
+		"/Users/mourner/projects/earcut/.eslintrc",
+		"/Users/mourner/projects/geojson-vt/debug/debug.js",
+		"/Users/mourner/projects/geojson-vt/src/simplify.js",
+		"/Users/mourner/projects/geojson-vt/src/transform.js",
+		"/Users/mourner/projects/geojson-vt/debug/index.html",
+		"/Users/mourner/projects/geojson-vt/LICENSE",
+		"/Users/mourner/projects/geojson-vt/package.json",
+		"/Users/mourner/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/mourner/projects/Leaflet/CHANGELOG.md",
+		"/usr/local/Library/Formula/node.rb",
+		"/Users/mourner/projects/Leaflet/package.json",
+		"/Users/mourner/projects/Leaflet/src/layer/tile/GridLayer.js",
+		"/Users/mourner/projects/Leaflet/Leaflet.sublime-project",
+		"/Users/mourner/projects/Leaflet/.eslintrc",
+		"/Users/mourner/projects/Leaflet/src/layer/marker/Icon.js",
+		"/Users/mourner/.inputrc",
+		"/Users/mourner/.bash_profile",
+		"/Users/mourner/.gitignore"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 128.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"middleinside",
+			"inside",
+			"removenode",
+			"[[",
+			"}",
+			"\"y\":",
+			"{\"x\":",
+			"10",
+			".y",
+			".x",
+			"area",
+			"signedarea",
+			"splitear",
+			"intersect",
+			"    console.timeEnd('triangle');\n",
+			"findholebridge",
+			"hashed",
+			"time",
+			"earcut",
+			"signedarea",
+			"p.i !== a.i && p.i !== b.i && p.i !== c.i",
+			"compareX",
+			"leftmost",
+			"last",
+			"eqr",
+			"sqDist",
+			"drawpoly",
+			"drawpoin",
+			"drawpoly",
+			"drawpoint",
+			"draw",
+			"eliminate",
+			"[[",
+			"seg",
+			"logpoly",
+			"draw",
+			"seg.next",
+			"hole",
+			"splitearcut",
+			"splitEarcut",
+			"intersect",
+			"logPoly",
+			"drawpoly",
+			"intersects",
+			"intersectsPolygon",
+			"logpoly",
+			"splitearcut",
+			"hole",
+			"outerNode",
+			"split",
+			"[[",
+			"intersects",
+			"curelocalinte",
+			">=",
+			"drawpo",
+			"area(p.prev",
+			"ares(p.prev",
+			"pointInTriangle",
+			"++",
+			"drawpoly",
+			"reflex",
+			"[[",
+			"p.next.y",
+			"p.y",
+			"findHoleBridge",
+			"isvaliddia",
+			"[[",
+			"locallyInside",
+			"steiner",
+			"data",
+			"linkedList",
+			"removenode",
+			"collinear",
+			"filterpoints",
+			"filterPoints",
+			"247",
+			"238",
+			"247",
+			"24",
+			"247",
+			"238",
+			"back",
+			"hasHoles",
+			"border",
+			"238",
+			"border",
+			"tab_",
+			"tab",
+			"property",
+			"function",
+			"link url",
+			"this",
+			"itali",
+			"class",
+			"ita",
+			".string.begin",
+			" -meta.structure.dictionary.value.json",
+			"meta.function-call",
+			"call",
+			"function",
+			"metho",
+			"function",
+			"support.function",
+			"function",
+			"name",
+			"property",
+			"tag",
+			"class",
+			"brace",
+			"defini",
+			"call",
+			"meta",
+			"punctuation",
+			"Functions",
+			"constan",
+			"vari",
+			"keyword",
+			"variable",
+			"string",
+			"function",
+			"support",
+			"variable",
+			"Keyword",
+			"file-",
+			"default",
+			"variable",
+			"hex",
+			"<%= @base[\"08\"][\"hex\"] %>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"]",
+			"",
+			"[",
+			",",
+			"],[",
+			"]",
+			"[",
+			"]",
+			"["
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/earcut.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10648,
+								10771
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6237.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "node_modules/tinyqueue/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1803,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								98
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								425,
+								625
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/mourner/projects/earcut",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/fixtures/issue52.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1228,
+								1228
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "test/test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 649.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "test/fixtures/shared-points.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 118,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "viz/viz.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 32656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31832,
+								31832
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 422.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"default_dir": "/Users/mourner/projects/earcut",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 5,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"default_dir": "/Users/mourner/projects/earcut",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "viz/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 329,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								329,
+								329
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1303,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "test/fixtures/bad-diagonals.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 125,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "test/fixtures/eberly-3.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								920,
+								920
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "earcut.sublime-project",
+	"replace":
+	{
+		"height": 92.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"in",
+				"viz/index.html"
+			],
+			[
+				"sr",
+				"src/earcut.js"
+			],
+			[
+				"ear",
+				"src/earcut.js"
+			],
+			[
+				"vi",
+				"viz/viz.js"
+			],
+			[
+				"tou",
+				"test/fixtures/touching-holes.json"
+			],
+			[
+				"viz",
+				"viz/viz.js"
+			],
+			[
+				"pre",
+				"~/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+			],
+			[
+				"otto",
+				"~/Library/Application Support/Sublime Text 3/Packages/Theme - Otto/schemes/Otto Yesterday.tmTheme"
+			],
+			[
+				"rea",
+				"README.md"
+			],
+			[
+				"sere",
+				"~/Library/Application Support/Sublime Text 3/Packages/Themes/Serenity.tmTheme"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"pa",
+				"package.json"
+			],
+			[
+				"redu",
+				"test/fixtures/reduce-testcase.js"
+			],
+			[
+				"inde",
+				"viz/index.html"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"bas",
+				"bench/basic.js"
+			],
+			[
+				"basi",
+				"bench/basic.js"
+			],
+			[
+				"per",
+				"perf.log"
+			],
+			[
+				"ben",
+				"bench/bench.js"
+			],
+			[
+				"tet",
+				"test/test.js"
+			],
+			[
+				"test",
+				"test/test.js"
+			],
+			[
+				"du",
+				"test/fixtures/dude.json"
+			],
+			[
+				"ind",
+				"viz/index.html"
+			],
+			[
+				"popu",
+				"src/layer/Popup.js"
+			],
+			[
+				"rend",
+				"src/layer/vector/Renderer.js"
+			],
+			[
+				"image",
+				"src/layer/ImageOverlay.js"
+			],
+			[
+				"path",
+				"src/layer/vector/Path.js"
+			],
+			[
+				"render",
+				"src/layer/vector/Renderer.js"
+			],
+			[
+				"marker",
+				"src/layer/marker/Marker.js"
+			],
+			[
+				"fl",
+				"src/map/anim/Map.FlyTo.js"
+			],
+			[
+				"grid",
+				"src/layer/tile/GridLayer.js"
+			],
+			[
+				"map",
+				"src/map/Map.js"
+			],
+			[
+				"polyli",
+				"src/layer/vector/Polyline.js"
+			],
+			[
+				"mapsp",
+				"spec/suites/map/MapSpec.js"
+			],
+			[
+				"popup",
+				"src/layer/Popup.js"
+			],
+			[
+				"crs",
+				"src/geo/crs/CRS.js"
+			],
+			[
+				"touch",
+				"src/map/handler/Map.TouchZoom.js"
+			],
+			[
+				"poly",
+				"src/layer/vector/Polyline.js"
+			],
+			[
+				"leafl",
+				"dist/leaflet.css"
+			],
+			[
+				"zoompa",
+				"debug/map/zoompan.html"
+			],
+			[
+				"map.dra",
+				"src/map/handler/Map.Drag.js"
+			],
+			[
+				"chan",
+				"CHANGELOG.md"
+			],
+			[
+				"domut",
+				"src/dom/DomUtil.js"
+			],
+			[
+				"scroll",
+				"src/map/handler/Map.ScrollWheelZoom.js"
+			],
+			[
+				"leaf",
+				"dist/leaflet.css"
+			],
+			[
+				"dom",
+				"src/dom/DomUtil.js"
+			],
+			[
+				"sv",
+				"src/layer/vector/SVG.js"
+			],
+			[
+				"re",
+				"src/layer/vector/Renderer.js"
+			],
+			[
+				"ren",
+				"src/layer/vector/Renderer.js"
+			],
+			[
+				"svg",
+				"src/layer/vector/SVG.js"
+			],
+			[
+				"even",
+				"src/core/Events.js"
+			],
+			[
+				"iamge",
+				"src/layer/ImageOverlay.js"
+			],
+			[
+				"icon",
+				"src/layer/marker/Icon.js"
+			],
+			[
+				"drag",
+				"src/map/handler/Map.Drag.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "simp",
+		"selected_items":
+		[
+			[
+				"simp",
+				"~/projects/simplify-js/simplify-js.sublime-project"
+			],
+			[
+				"ear",
+				"~/projects/earcut.hpp/earcut-hpp.sublime-project"
+			],
+			[
+				"rb",
+				"~/projects/rbush/rbush.sublime-project"
+			],
+			[
+				"lea",
+				"~/projects/Leaflet/Leaflet.sublime-project"
+			],
+			[
+				"ma",
+				"~/projects/mapbox-gl-js/mapbox-gl-js.sublime-project"
+			],
+			[
+				"gl",
+				"~/projects/mapbox-gl-js/mapbox-gl-js.sublime-project"
+			],
+			[
+				"le",
+				"~/projects/Leaflet/Leaflet.sublime-project"
+			],
+			[
+				"",
+				"~/projects/rbush/rbush.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 249.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
