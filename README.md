@@ -18,6 +18,8 @@ This repository includes code & resources for students attending my *Generative 
 
 - [Other Modules for Creative Coding](#other-modules-for-creative-coding)
 
+- [Cheat Sheet](#cheat-sheet)
+
 - [Further Reading](#further-reading)
 
 # Tools & Prerequisites
@@ -28,7 +30,7 @@ Here is a list of tools, software and libraries that will be used during the wor
 |---|---|---|
 | *Code Editor* | | A JavaScript code editor, [VSCode](https://code.visualstudio.com/) is recommended
 | *Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is reocmmended
-| *Canvas API* | [[docs](https://developer.mozilla.org/kab/docs/Web/API/Canvas_API)] | The HTML5 `<canvas>` API, built into all browsers 
+| *Canvas API* | [[docs](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)] | The HTML5 `<canvas>` API, built into all browsers 
 | *Command-Line* | [[guide](./docs/command-line.md)] | A command-line application like Terminal (macOS) or [cmder](http://cmder.net/) (Windows)
 | [Node.js](https://nodejs.org/en/) (v8+) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used for running command-line JavaScript tools
 | [npm](https://npmjs.com/) (v5+) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used to install third-party dependencies and tools
@@ -106,6 +108,12 @@ Below are some nice modules for creative coding & generative art:
 - [svg-mesh-3d](https://github.com/mattdesl/svg-mesh-3d) - convert SVG path string to a 3D mesh
 - [eases](https://www.npmjs.com/package/eases) - a set of common easing functions
 - [bezier-easing](https://www.npmjs.com/package/bezier-easing) - create cubic bezier curve functions
+
+# Cheat Sheet
+
+I've also included a small "cheat sheet" that you can use as a reference if you are forgetting some of the patterns and recipes discussed during the workshop.
+
+- [Cheat Sheet](./docs/cheat-sheet.md)
 
 # Further Reading
 

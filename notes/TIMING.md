@@ -6,6 +6,13 @@
 - Class structure: Morning / Afternoon
 - What is Creative Coding?
 - Examples of Creative Coding
+  - AR / VR (Zach Lieberman)
+  - Dataviz (??)
+  - Graphic Design, Print & Branding (Nordik)
+    - Nordik https://www.behance.net/gallery/64539455/Noerdik-Impakt-19
+    - Primary https://www.behance.net/gallery/33134879/Primary
+  - Installation
+    - Presence https://www.behance.net/gallery/51803471/Presence
 - What is Generative Art?
 - Examples of Generative Art
 - Practical/Work Opportunities?
@@ -73,11 +80,14 @@
 1:30 PM
 
 - 3D Coordinates & Math Basics
-- Triangulation, Particles?
-- Animation?
-- Parametric?
+- 3D grid points
+- Pool of meshes & animation
 
 2:00 PM
+
+- Choosing random geometries?
+- Animation?
+- Modifying geometries?
 
 2:30 PM
 
@@ -89,3 +99,4 @@
 
 4:30 PM
 
+Open Code

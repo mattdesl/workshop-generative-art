@@ -6,7 +6,7 @@ const settings = {
 };
 
 const sketch = ({ update }) => {
-  const count = 3;
+  const count = 5;
 
   const createGrid = () => {
     const points = [];

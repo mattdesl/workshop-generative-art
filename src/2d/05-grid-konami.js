@@ -3,22 +3,6 @@ const { lerp } = require('canvas-sketch-util/math');
 const palettes = require('nice-color-palettes/1000.json');
 const random = require('canvas-sketch-util/random');
 
-let background, palette;
-const monochrome = true;
-
-// Choose a color palette
-if (monochrome) {
-  background = 'hsl(0, 0%, 96%)';
-  palette = ['hsl(0, 0%, 10%)'];
-} else {
-  // Get random 5-color palette
-  palette = random.pick(palettes);
-  // Shuffle the 5 colors
-  palette = random.shuffle(palette);
-  palette = palette.slice(0, random.rangeFloor(2, palette.length + 1));
-  background = palette.shift();
-}
-
 const settings = {
   dimensions: [ 2048, 2048 ]
 };
@@ -26,6 +10,8 @@ const settings = {
 const sketch = () => {
   const count = 20;
   const characters = '←↑→↓AB'.split('');
+  const background = 'hsl(0, 0%, 96%)';
+  const palette = ['hsl(0, 0%, 10%)'];
 
   const createGrid = () => {
     const points = [];
@@ -48,11 +34,7 @@ const sketch = () => {
     return points;
   };
 
-  let points = createGrid().filter(() => {
-    return Math.random() > 0.5;
-  });
-
-  points = random.shuffle(points);
+  let points = createGrid().filter(() => random.chance(0.5));
 
   // We can use "FontFace" to load fonts from JavaScript
   // This will ensure the font is renderable

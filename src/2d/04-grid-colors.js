@@ -35,7 +35,7 @@ const sketch = () => {
   };
 
   let points = createGrid().filter(() => {
-    return Math.random() > 0.5;
+    return Math.random() > 0.75;
   });
 
   points = random.shuffle(points);

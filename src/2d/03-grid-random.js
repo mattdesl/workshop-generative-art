@@ -5,8 +5,11 @@ const settings = {
   dimensions: [ 2048, 2048 ]
 };
 
-const sketch = () => {
-  const count = 30;
+const sketch = ({ width, height }) => {
+  const count = 40;
+  const margin = width * 0.15;
+  const padding = 20;
+  const tileSize = (width - margin * 2) / count - padding;
 
   const createGrid = () => {
     const points = [];
@@ -21,13 +24,11 @@ const sketch = () => {
   };
 
   const points = createGrid().filter(() => {
-    return Math.random() > 0.75;
+    return Math.random() > 0.5;
   });
 
   return ({ context, width, height }) => {
-    const margin = width * 0.175;
-
-    context.fillStyle = '#80c0f2';
+    context.fillStyle = '#cc8080';
     context.fillRect(0, 0, width, height);
 
     points.forEach(([ u, v ]) => {
@@ -35,10 +36,9 @@ const sketch = () => {
       const y = lerp(margin, height - margin, v);
 
       context.beginPath();
-      context.arc(x, y, 12, 0, Math.PI * 2);
-      context.strokeStyle = '#fff';
-      context.lineWidth = 10;
-      context.stroke();
+      context.arc(x, y, tileSize * 0.5, 0, Math.PI * 2);
+      context.fillStyle = '#fff';
+      context.fill();
     });
   };
 };

@@ -55,7 +55,7 @@ Once installed, you won't need to run this again unless you want to update to a 
 Once you've installed the CLI tool globally, `cd` into this repository folder and you can run each individual sketch with the `canvas-sketch` command, like so:
 
 ```sh
-canvas-sketch src/grid-basic.js --open
+canvas-sketch src/2d/01-grid.js --open
 ```
 
 The optional `--open` flag will open your default browser to the development server's URL, which is the same as [http://localhost:9966](http://localhost:9966).
