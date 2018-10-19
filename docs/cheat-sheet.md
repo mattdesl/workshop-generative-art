@@ -131,6 +131,32 @@ If *t* is between -1 and 1 (inclusive) and you want to map it to 0 to 1 (inclusi
 const n = t * 0.5 + 0.5;
 ```
 
+## Mapping One Range of Numbers to Another
+
+You can also use the `mapRange` function in `canvas-sketch-util/math` to map one range of values to another:
+
+```js
+const { mapRange } = require('canvas-sketch-util/math');
+
+// Our input lies between -1..1
+const value = -0.25;
+
+// Map the input range -1..1 to the output range 25..50
+const n = mapRange(value, -1, 1, 25, 50);
+```
+
+This is equivalent to:
+
+```js
+const { inverseLerp, lerp } = require('canvas-sketch-util/math');
+
+// Get a 0..1 represenation of the value within the given range
+const t = inverseLerp(-1, 1, value);
+
+// Now interpolate that to our output range of 25..50
+const n = lerp(25, 50, t);
+```
+
 ## Fill a Circle in Canvas 2D
 
 ```js
@@ -191,6 +217,27 @@ line.forEach(([ x, y ]) => context.lineTo(x, y));
 context.lineWidth = thickness;
 context.stroke();
 ```
+
+## Looping Motion in `-1..1` Range
+
+To create a looping motion from `-1..1` you can use `Math.sin()`, like so:
+
+```js
+const motionSpeed = 0.5;
+const v = Math.sin(time * motionSpeed);
+```
+
+You can map this value into `0..1` space and/or interpolate it to another range.
+
+## Ping-Pong Motion in `0..1` Range
+
+When you have a defined sketch `{ duration }` and you are using the `{ playhead }` prop, you can use `Math.sin()` to get a ping-pong motion from `0..1` which slowly varies from 0, to 1, and then back to zero.
+
+```js
+const v = Math.sin(playhead * Math.PI);
+```
+
+You can invert this with `1.0 - v` if you need it to vary from 1, to 0, and then back to 1.
 
 ## 
 
