@@ -23,9 +23,8 @@ const sketch = ({ width, height }) => {
     return points;
   };
 
-  const points = createGrid().filter(() => {
-    return Math.random() > 0.5;
-  });
+  // Get N% of full grid
+  const points = createGrid().filter(() => Math.random() > 0.5);
 
   return ({ context, width, height }) => {
     context.fillStyle = '#cc8080';

@@ -24,7 +24,7 @@ const sketch = ({ context, update }) => {
   });
 
   // WebGL background color
-  renderer.setClearColor('#181818', 1);
+  renderer.setClearColor('#000', 1);
 
   // Setup a camera
   const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 100);
@@ -67,10 +67,15 @@ const sketch = ({ context, update }) => {
   // draw each frame
   return {
     // Handle resize events here
-    resize({ pixelRatio, viewportWidth, viewportHeight }) {
+    resize({ pixelRatio, viewportWidth, viewportHeight, width, height }) {
       renderer.setPixelRatio(pixelRatio);
       renderer.setSize(viewportWidth, viewportHeight);
       camera.aspect = viewportWidth / viewportHeight;
+      camera.setViewOffset(
+        width, height,
+        0, 40,
+        width, height
+      );
       camera.updateProjectionMatrix();
     },
     // And render events here

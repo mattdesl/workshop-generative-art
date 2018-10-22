@@ -7,7 +7,7 @@ const settings = {
   dimensions: [ 2048, 2048 ]
 };
 
-const sketch = () => {
+const sketch = async () => {
   const count = 20;
   const characters = '←↑→↓AB'.split('');
   const background = 'hsl(0, 0%, 96%)';
@@ -36,35 +36,42 @@ const sketch = () => {
 
   let points = createGrid().filter(() => random.chance(0.5));
 
-  // We can use "FontFace" to load fonts from JavaScript
-  // This will ensure the font is renderable
-  const font = new window.FontFace('SpaceGrotesk-Medium', 'url(assets/fonts/SpaceGrotesk-Medium.woff)');
-  return font.load().then(() => {
-    return ({ context, width, height }) => {
-      const margin = width * 0.175;
+  // We can use Browser's "FontFace" API to load fonts from JavaScript
+  // This will ensure the font is renderable before first drawing to Canvas
+  const fontUrl = 'assets/fonts/SpaceGrotesk-Medium.woff';
+  const font = new window.FontFace(
+    'SpaceGrotesk-Medium',
+    `url(${fontUrl})`
+  );
 
-      context.fillStyle = background;
-      context.fillRect(0, 0, width, height);
+  // We use async/await ES6 syntax to wait for the font to load
+  await font.load();
 
-      points.forEach(data => {
-        const {
-          position,
-          radius,
-          color,
-          character
-        } = data;
-        const x = lerp(margin, width - margin, position[0]);
-        const y = lerp(margin, height - margin, position[1]);
+  // Now return a render function for the sketch
+  return ({ context, width, height }) => {
+    const margin = width * 0.175;
 
-        // Draw the character
-        context.fillStyle = color;
-        context.font = `${radius}px "SpaceGrotesk-Medium"`;
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-        context.fillText(character, x, y);
-      });
-    };
-  });
+    context.fillStyle = background;
+    context.fillRect(0, 0, width, height);
+
+    points.forEach(data => {
+      const {
+        position,
+        radius,
+        color,
+        character
+      } = data;
+      const x = lerp(margin, width - margin, position[0]);
+      const y = lerp(margin, height - margin, position[1]);
+
+      // Draw the character
+      context.fillStyle = color;
+      context.font = `${radius}px "SpaceGrotesk-Medium"`;
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(character, x, y);
+    });
+  };
 };
 
 canvasSketch(sketch, settings);

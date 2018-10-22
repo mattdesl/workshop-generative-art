@@ -24,7 +24,7 @@ const sketch = ({ width, height }) => {
       : Math.floor(random.range(lineCount * 0.5, lineCount * 4));
     if (lineSegments % 2 !== 0) lineSegments++;
 
-    const colors = [ '#181818', '#EEF0F0' ];
+    const colors = [ '#000000', '#EEF0F0' ];
     const [background, foreground] = colors;
 
     let points = [];

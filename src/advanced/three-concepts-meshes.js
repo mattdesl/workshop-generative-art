@@ -1,10 +1,13 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
+const palettes = require('nice-color-palettes/1000.json').slice(250);
 
 // Ensure ThreeJS is in global scope for the 'examples/'
 global.THREE = require('three');
 
 const isometric = true;
+const simplePalette = true;
+const palette = simplePalette ? [ '#efb3b3', '#a0d0e8' ] : random.shuffle(random.pick(palettes)).slice(0, 2);
 
 const settings = {
   dimensions: [1440, 900],
@@ -21,16 +24,15 @@ const settings = {
 };
 
 const sketch = ({ context, update }) => {
-  random.setSeed(16);
+  random.setSeed(6);
 
   // Create a renderer
   const renderer = new THREE.WebGLRenderer({
     context
   });
 
-
   // WebGL background color
-  renderer.setClearColor(settings.animate ? '#000' : '#181818', 1);
+  renderer.setClearColor('#000', 1);
 
   // Setup a camera
   const camera = isometric
@@ -53,16 +55,14 @@ const sketch = ({ context, update }) => {
       const material = new THREE.MeshStandardMaterial({
         roughness: 0.75,
         metalness: 0.25,
-        color: new THREE.Color().setHSL(
-          random.value(), random.range(0.45, 0.55), 0.6
-        )
+        color: new THREE.Color(random.pick(palette))
       })
       const mesh = new THREE.Mesh(geometry, material);
       mesh.scale.set(
         random.gaussian(),
-        random.gaussian() * 4,
+        random.gaussian() * random.gaussian() * 2,
         random.gaussian()
-      ).multiplyScalar(0.2);
+      ).multiplyScalar(0.25 * random.gaussian());
       mesh.position.set(
         u,
         0,
@@ -76,8 +76,8 @@ const sketch = ({ context, update }) => {
   // scene.add(new THREE.AmbientLight('#181818'));
 
   // Add some light
-  const light = new THREE.DirectionalLight('white', 5);
-  light.position.set(0, 4, 0);
+  const light = new THREE.DirectionalLight('white', 4);
+  light.position.set(-1, 4, 1);
   light.lookAt(new THREE.Vector3());
   scene.add(light);
 
@@ -106,7 +106,7 @@ const sketch = ({ context, update }) => {
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render({ playhead, frame }) {
+    render({ playhead, frame, width, height }) {
       if (!isometric) {
         const orbit = Math.PI / 4 + playhead * Math.PI * 2;
         const radius = 4;
@@ -115,11 +115,12 @@ const sketch = ({ context, update }) => {
         const z = Math.sin(orbit) * radius;
         camera.position.set(x, y, z);
         camera.lookAt(new THREE.Vector3());
-        camera.position.y -= 0.35;
-      } else {
-        scene.rotation.y = Math.sin(playhead * Math.PI * 2) * 0.5;
       }
-      
+
+      if (settings.animate) {
+        scene.rotation.y = playhead * Math.PI * 2;
+      }
+      camera.setViewOffset(width, height, 0, 25, width, height);
       renderer.render(scene, camera);
     },
     // Dispose of WebGL context (optional)

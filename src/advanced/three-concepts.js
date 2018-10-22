@@ -72,7 +72,7 @@ const sketch = ({ context, update }) => {
   });
 
   // WebGL background color
-  renderer.setClearColor('#181818', 1);
+  renderer.setClearColor('black', 1);
 
   // Setup a camera
   const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 100);
@@ -93,7 +93,7 @@ const sketch = ({ context, update }) => {
   light.position.set(2, 2, -4).multiplyScalar(1.5);
   scene.add(light);
 
-  update({ frame: 6, playing: false })
+  // update({ frame: 6, playing: false })
 
   // draw each frame
   return {
