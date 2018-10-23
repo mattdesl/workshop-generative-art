@@ -4,7 +4,6 @@ const random = require('canvas-sketch-util/random');
 // Ensure ThreeJS is in global scope for the 'examples/'
 global.THREE = require('three');
 
-
 const settings = {
   dimensions: [1440, 900],
   exportPixelRatio: 2,
@@ -32,28 +31,27 @@ const sketch = ({ context, update }) => {
   // Setup your scene
   const scene = new THREE.Scene();
 
-  const count = 10;
   const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-	const material1 = new THREE.MeshStandardMaterial({
-		roughness: 1,
-		metalness: 0,
-		color: new THREE.Color('hsl(0, 55%, 60%)')
-	})
-	const mesh1 = new THREE.Mesh(geometry, material1);
-	mesh1.position.set(1, 0, 0);
-	scene.add(mesh1);
+  const material1 = new THREE.MeshStandardMaterial({
+    roughness: 1,
+    metalness: 0,
+    color: new THREE.Color('hsl(0, 55%, 60%)')
+  });
+  const mesh1 = new THREE.Mesh(geometry, material1);
+  mesh1.position.set(1, 0, 0);
+  scene.add(mesh1);
 
-	const material2 = new THREE.MeshStandardMaterial({
-		roughness: 1,
-		metalness: 0,
-		color: new THREE.Color('hsl(200, 55%, 60%)')
-	})
-	const mesh2 = new THREE.Mesh(geometry, material2);
-	mesh2.position.set(-1, 0, 0);
-	mesh2.scale.x = 0.5;
-	mesh2.scale.z = 0.25;
-	scene.add(mesh2);
+  const material2 = new THREE.MeshStandardMaterial({
+    roughness: 1,
+    metalness: 0,
+    color: new THREE.Color('hsl(200, 55%, 60%)')
+  });
+  const mesh2 = new THREE.Mesh(geometry, material2);
+  mesh2.position.set(-1, 0, 0);
+  mesh2.scale.x = 0.5;
+  mesh2.scale.z = 0.25;
+  scene.add(mesh2);
 
   // Specify an ambient/unlit colour
   scene.add(new THREE.AmbientLight('hsl(0, 0%, 10%)'));
@@ -67,7 +65,7 @@ const sketch = ({ context, update }) => {
   // draw each frame
   return {
     // Handle resize events here
-    resize({ pixelRatio, viewportWidth, viewportHeight, width, height }) {
+    resize ({ pixelRatio, viewportWidth, viewportHeight, width, height }) {
       renderer.setPixelRatio(pixelRatio);
       renderer.setSize(viewportWidth, viewportHeight);
       camera.aspect = viewportWidth / viewportHeight;
@@ -79,7 +77,7 @@ const sketch = ({ context, update }) => {
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render({ playhead, frame }) {
+    render ({ playhead, frame }) {
       const orbit = Math.PI / 4 + playhead * Math.PI * 2;
       const y = 4;
       const radius = 4;
@@ -92,7 +90,7 @@ const sketch = ({ context, update }) => {
       renderer.render(scene, camera);
     },
     // Dispose of WebGL context (optional)
-    unload() {
+    unload () {
       renderer.dispose();
     }
   };

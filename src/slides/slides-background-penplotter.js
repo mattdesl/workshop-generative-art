@@ -1,7 +1,12 @@
+/**
+ * A re-implementation of the slide background patterns,
+ * but supporting AxiDraw V3 Mechanical Pen Plotter (i.e. export as SVG).
+ */
+
 const canvasSketch = require('canvas-sketch');
 const { createRandom, getRandomSeed } = require('canvas-sketch-util/random');
 const { lerp } = require('canvas-sketch-util/math');
-const { polylinesToSVG } = require('canvas-sketch-util/penplot');
+const { renderPolylines } = require('canvas-sketch-util/penplot');
 const { vec2 } = require('gl-matrix');
 
 const settings = {
@@ -9,11 +14,9 @@ const settings = {
   units: 'cm'
 };
 
-const sketch = ({ width, height, units, render }) => {
+const sketch = ({ context, width, height, units, render }) => {
   // Some constant variables here
   const margin = 3.5;
-  const colors = [ '#181818', '#EEF0F0' ];
-  const [background, foreground] = colors;
 
   // Set up a function that will re-generate the state entirely
   let seed, lines;
@@ -35,28 +38,14 @@ const sketch = ({ width, height, units, render }) => {
   // Set the initial state
   reset();
 
-  return ({ context }) => {
-    // Setup background
-    context.fillStyle = background;
-    context.globalAlpha = 1;
-    context.fillRect(0, 0, width, height);
-    context.lineWidth = 0.03;
-
-    // Now draw each line
-    lines.forEach(line => {
-      context.beginPath();
-      line.forEach(([x, y]) => context.lineTo(x, y));
-      context.strokeStyle = foreground;
-      context.globalAlpha = 1;
-      context.stroke();
-    });
-
-    // Return PNG + SVG data, use the random seed as filename suffix
-    return [
-      { data: context.canvas, suffix: seed },
-      { data: polylinesToSVG(lines, {width, height, units}), extension: '.svg', suffix: seed }
-    ];
-  };
+  // We enclose the renderPolylines within a function
+  // so that it always picks up the current 'lines' array
+  return () => renderPolylines(lines, {
+    context,
+    width,
+    height,
+    units
+  });
 
   function generate (random) {
     const length = random.range(0.25, 2);

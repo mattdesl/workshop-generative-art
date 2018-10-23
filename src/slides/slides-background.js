@@ -1,3 +1,8 @@
+/**
+ * Generates 100 uniqu slide images that can be used
+ * as subtle backdrops for Keynote presentations.
+ */
+
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
 const { lerp } = require('canvas-sketch-util/math');

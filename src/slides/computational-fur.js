@@ -1,7 +1,6 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
-const { lerp, lerpArray } = require('canvas-sketch-util/math');
-const palettes = require('nice-color-palettes');
+const { lerp } = require('canvas-sketch-util/math');
 
 random.setSeed(random.getRandomSeed());
 
@@ -57,7 +56,7 @@ const sketch = ({ width, height }) => {
       line.forEach(([ x, y ]) => context.lineTo(x, y));
       context.globalCompositeOperation = 'lighter';
       context.strokeStyle = foreground;
-      context.globalAlpha = 0.35
+      context.globalAlpha = 0.35;
       context.stroke();
     });
   };

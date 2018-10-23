@@ -27,9 +27,6 @@ const sketch = ({ context, width, height }) => {
   // Setup your scene
   const scene = new THREE.Scene();
 
-  // A group that will hold all of our cubes
-  const container = new THREE.Group();
-
   // Re-use the same Geometry across all our cubes
   const geometry = new THREE.BoxGeometry(1, 1, 1);
 

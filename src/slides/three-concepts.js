@@ -47,7 +47,7 @@ const materials = [
       flatShading: true
     }),
     geometry: new THREE.BoxGeometry(1, 1, 1)
-  },
+  }
 ];
 
 const settings = {
@@ -93,19 +93,17 @@ const sketch = ({ context, update }) => {
   light.position.set(2, 2, -4).multiplyScalar(1.5);
   scene.add(light);
 
-  // update({ frame: 6, playing: false })
-
   // draw each frame
   return {
     // Handle resize events here
-    resize({ pixelRatio, viewportWidth, viewportHeight }) {
+    resize ({ pixelRatio, viewportWidth, viewportHeight }) {
       renderer.setPixelRatio(pixelRatio);
       renderer.setSize(viewportWidth, viewportHeight);
       camera.aspect = viewportWidth / viewportHeight;
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render({ time, frame }) {
+    render ({ time, frame }) {
       const { material, subdiv = defaultSubdiv, geometry } = materials[frame % materials.length];
       mesh.geometry.dispose();
       mesh.geometry = geometry || new THREE.SphereGeometry(1, subdiv * 2, subdiv);
@@ -113,7 +111,7 @@ const sketch = ({ context, update }) => {
       renderer.render(scene, camera);
     },
     // Dispose of WebGL context (optional)
-    unload() {
+    unload () {
       renderer.dispose();
     }
   };

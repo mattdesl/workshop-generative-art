@@ -56,7 +56,7 @@ const sketch = ({ context, update }) => {
         roughness: 0.75,
         metalness: 0.25,
         color: new THREE.Color(random.pick(palette))
-      })
+      });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.scale.set(
         random.gaussian(),
@@ -84,7 +84,7 @@ const sketch = ({ context, update }) => {
   // draw each frame
   return {
     // Handle resize events here
-    resize({ pixelRatio, viewportWidth, viewportHeight }) {
+    resize ({ pixelRatio, viewportWidth, viewportHeight }) {
       renderer.setPixelRatio(pixelRatio);
       renderer.setSize(viewportWidth, viewportHeight);
       if (isometric) {
@@ -106,7 +106,7 @@ const sketch = ({ context, update }) => {
       camera.updateProjectionMatrix();
     },
     // And render events here
-    render({ playhead, frame, width, height }) {
+    render ({ playhead, frame, width, height }) {
       if (!isometric) {
         const orbit = Math.PI / 4 + playhead * Math.PI * 2;
         const radius = 4;
@@ -124,7 +124,7 @@ const sketch = ({ context, update }) => {
       renderer.render(scene, camera);
     },
     // Dispose of WebGL context (optional)
-    unload() {
+    unload () {
       renderer.dispose();
     }
   };

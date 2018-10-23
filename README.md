@@ -84,6 +84,12 @@ During the workshop, you won't need to clone and run this repository locally. Ho
 
 - [Cloning & Running Examples](./docs/cloning.md)
 
+# Cheat Sheet
+
+I've also included a small "cheat sheet" that you can use as a reference if you are forgetting some of the patterns and recipes discussed during the workshop.
+
+- [Cheat Sheet](./docs/cheat-sheet.md)
+
 # Other Modules for Creative Coding
 
 This workshop encourages students to make use of [npm](https://www.npmjs.com) modules to build complex and interesting artworks.
@@ -108,12 +114,6 @@ Below are some nice modules for creative coding & generative art:
 - [svg-mesh-3d](https://github.com/mattdesl/svg-mesh-3d) - convert SVG path string to a 3D mesh
 - [eases](https://www.npmjs.com/package/eases) - a set of common easing functions
 - [bezier-easing](https://www.npmjs.com/package/bezier-easing) - create cubic bezier curve functions
-
-# Cheat Sheet
-
-I've also included a small "cheat sheet" that you can use as a reference if you are forgetting some of the patterns and recipes discussed during the workshop.
-
-- [Cheat Sheet](./docs/cheat-sheet.md)
 
 # Further Reading
 
@@ -148,3 +148,9 @@ More links to generative art & creative coding:
   - [awesome-creative-coding — a large list of resources](https://github.com/terkelg/awesome-creative-coding)
 
   - [graphics-resources — a large list of papers & study material](https://github.com/mattdesl/graphics-resources)
+
+- Communities
+
+  - [#plottertwitter](https://twitter.com/hashtag/plottertwitter?lang=en), [#webgl](https://twitter.com/hashtag/webgl?lang=en) and other Twitter communities
+
+  - [creative-dev Slack team](https://creative-dev.herokuapp.com/)

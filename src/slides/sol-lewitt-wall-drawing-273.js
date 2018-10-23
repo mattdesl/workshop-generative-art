@@ -1,7 +1,18 @@
+/**
+ * A JavaScript implementation of Sol LeWitt's Wall Drawing #273 (1975) at SFMOMA.
+ *
+ * Instructions:
+ * - A six-inch (15 cm) grid covering the walls. Lines from corners, sides,
+ *   and centre of the walls to random points on the grid.
+ * - (7th wall) Red lines from the midpoints of four sides, blue lines from
+ *   four corners, yellow lines from the center.
+ */
+
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
 const { lerp, lerpArray } = require('canvas-sketch-util/math');
-const palettes = require('nice-color-palettes');
+
+// const palettes = require('nice-color-palettes');
 
 const settings = {
   dimensions: 'A4',
@@ -104,7 +115,7 @@ const sketch = ({ width, height }) => {
       const start = type.emitter();
       items.push(connect(start, type.color));
     }
-  })
+  });
 
   // Cleanup lines
   items = items.filter(Boolean);

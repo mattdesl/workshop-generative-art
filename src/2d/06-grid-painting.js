@@ -57,7 +57,7 @@ const sketch = ({ width, height }) => {
       const x = lerp(margin, width - margin, u);
       const y = lerp(margin, height - margin, v);
       context.fillStyle = context.strokeStyle = color;
-      context.textAlign = 'center'
+      context.textAlign = 'center';
       context.textBaseline = 'middle';
       context.font = `${size}px ${fontFamily}`;
 

@@ -1,6 +1,5 @@
 const canvasSketch = require('canvas-sketch');
 const { lerp } = require('canvas-sketch-util/math');
-const palettes = require('nice-color-palettes/1000.json');
 const random = require('canvas-sketch-util/random');
 
 const settings = {

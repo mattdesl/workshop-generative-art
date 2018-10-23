@@ -1,9 +1,9 @@
 /**
  * An example of a Sol LeWitt inspired "Wall Drawing" using
  * a simple generative algorithm.
- * 
+ *
  * The instructions for this mural:
- * 
+ *
  * - Using a 6x6 grid of evenly spaced points
  * - Connect two random points on the grid; forming a trapezoid with two parallel sides extending down
  * - Fill the trapezoid with a colour, then stroke with the background colour
@@ -13,7 +13,7 @@
 
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
-const { lerp, lerpArray } = require('canvas-sketch-util/math');
+const { lerp } = require('canvas-sketch-util/math');
 const palettes = require('nice-color-palettes/1000.json');
 
 const settings = {
@@ -93,13 +93,16 @@ const sketch = ({ width, height }) => {
 
   // Now render
   return ({ context, width, height }) => {
+    // Make sure our alpha is back to 1.0 before
+    // we draw our background color
+    context.globalAlpha = 1;
     context.fillStyle = background;
     context.fillRect(0, 0, width, height);
 
     shapes.forEach(({ lineWidth, path, color }) => {
       context.beginPath();
       path.forEach(([ x, y ]) => {
-        context.lineTo(x, y)
+        context.lineTo(x, y);
       });
       context.closePath();
 
