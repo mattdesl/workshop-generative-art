@@ -114,6 +114,7 @@ Below are some nice modules for creative coding & generative art:
 - [svg-mesh-3d](https://github.com/mattdesl/svg-mesh-3d) - convert SVG path string to a 3D mesh
 - [eases](https://www.npmjs.com/package/eases) - a set of common easing functions
 - [bezier-easing](https://www.npmjs.com/package/bezier-easing) - create cubic bezier curve functions
+- [glsl-noise](https://www.npmjs.com/package/glsl-noise) - noise functions as a GLSL module (used with glslify)
 
 # Further Reading
 

@@ -1,3 +1,10 @@
+/**
+ * An attempt to recreate the effect by DIA Studio Primary project
+ * as a GLSL shader.
+ *
+ * https://www.behance.net/gallery/33134879/Primary
+ */
+
 const canvasSketch = require('canvas-sketch');
 const createShader = require('canvas-sketch-util/shader');
 const glsl = require('glslify');
@@ -5,7 +12,7 @@ const glsl = require('glslify');
 // Setup our sketch
 const settings = {
   context: 'webgl',
-  dimensions: [ 512, 512 ],
+  dimensions: [ 1024, 1024 ],
   animate: true
 };
 
