@@ -265,6 +265,34 @@ camera.lookAt(new THREE.Vector3());
 camera.updateProjectionMatrix();
 ```
 
+## Third-Party GLSL Modules
+
+With [glslify](https://github.com/glslify/glslify) (built-in to canvas-sketch CLI), we can import GLSL modules and snippets directly form npm into our shader code.
+
+For example, after running `npm install glsl-noise`, you can use this:
+
+```js
+// Import glslify
+const glsl = require('glslify');
+
+// Wrap your GLSL string with glslify function
+const frag = glsl(`
+  precision highp float;
+
+  // We can now import GLSL snippets from npm into this shader
+  #pragma glslify: noise = require('glsl-noise/simplex/3d');
+
+  uniform float time;
+  varying vec2 vUv;
+
+  void main () {
+    float d = noise(vec3(vUv, time));
+    vec3 color = vec3(d);
+    gl_FragColor = vec4(color, 1.0);
+  }
+`);
+```
+
 ## 
 
 #### <sup>[← Back to Documentation](../README.md)
