@@ -46,7 +46,11 @@ const frag = glsl(/* glsl */`
     d += (noise(vec3(q * 0.25 + 0.5, time * 0.25)) * 0.5 + 0.5) * 0.5;
     d = clamp(d, 0.0, 1.0);
 
-    vec3 color = hsl2rgb(mod(time * 0.05, 1.0) + (0.5 + d * 0.5), 0.5, 0.5 + d * 0.25);
+    vec3 color = hsl2rgb(
+      mod(time * 0.05, 1.0) + (0.5 + d * 0.5),
+      0.5,
+      0.5 + d * 0.25
+    );
 
     vec3 fragColor = color;
 
