@@ -126,11 +126,11 @@ More links to generative art & creative coding:
 
   - [Generative Artistry](https://generativeartistry.com/)
 
-  - [Anders Hoff — Writing on Generative Art](https://inconvergent.net/#writing)
+  - [Anders Hoff](https://inconvergent.net/#writing) — Writing on Generative Art
 
-  - [Tyler Hobbs — Writing on Generative Art](http://www.tylerlhobbs.com/writings)
+  - [Tyler Hobbs](http://www.tylerlhobbs.com/writings) — Writing on Generative Art
 
-  - [My Blog — Writing on Creative Coding & Generative Art](https://mattdesl.svbtle.com/)
+  - [My Blog](https://mattdesl.svbtle.com/) — Writing on Creative Coding & Generative Art
 
 - GLSL & Shaders
 
@@ -142,18 +142,24 @@ More links to generative art & creative coding:
 
 - Math
 
-  - [Linear Interpolation — intro to `lerp`](https://mattdesl.svbtle.com/linear-interpolation)
+  - [Linear Interpolation](https://mattdesl.svbtle.com/linear-interpolation) — intro to `lerp`
 
-  - [math-as-code — A cheat sheet for mathematical notation in code form](https://github.com/Jam3/math-as-code)
+  - [math-as-code](https://github.com/Jam3/math-as-code) — A cheat sheet for mathematical notation in code form
 
 - More Resources
 
-  - [awesome-creative-coding — a large list of resources](https://github.com/terkelg/awesome-creative-coding)
+  - [awesome-creative-coding](https://github.com/terkelg/awesome-creative-coding) — a large list of resources
 
-  - [graphics-resources — a large list of papers & study material](https://github.com/mattdesl/graphics-resources)
+  - [graphics-resources](https://github.com/mattdesl/graphics-resources) — a large list of papers & study material
+
+- Tools
+
+  - [giftool.surge.sh](https://giftool.surge.sh/) — A simple tool for creating looping GIF animations from a folder of PNG frames
+
+  - [cubic-bezier.com](http://cubic-bezier.com) — A cubic Bezier curve editor, useful alongside the [bezier-easing](https://www.npmjs.com/package/bezier-easing) module
 
 - Communities
 
-  - [#plottertwitter](https://twitter.com/hashtag/plottertwitter?lang=en), [#webgl](https://twitter.com/hashtag/webgl?lang=en) and other Twitter communities
-
   - [creative-dev Slack team](https://creative-dev.herokuapp.com/)
+
+  - [#plottertwitter](https://twitter.com/hashtag/plottertwitter?lang=en), [#generative](https://twitter.com/hashtag/generative?lang=en), [#webgl](https://twitter.com/hashtag/webgl?lang=en) and similar hashtags on Twitter, Instagram etc.
