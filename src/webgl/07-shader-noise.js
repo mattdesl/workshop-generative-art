@@ -8,7 +8,6 @@
 const canvasSketch = require('canvas-sketch');
 const createShader = require('canvas-sketch-util/shader');
 const glsl = require('glslify');
-const loadAsset = require('load-asset');
 
 // Setup our sketch
 const settings = {
@@ -26,7 +25,6 @@ const frag = glsl(/* glsl */`
 
   uniform float time;
   uniform float aspect;
-  uniform sampler2D map;
   varying vec2 vUv;
 
   float circle (vec2 point) {
@@ -50,7 +48,7 @@ const frag = glsl(/* glsl */`
 
     vec3 color = hsl2rgb(mod(time * 0.05, 1.0) + (0.5 + d * 0.5), 0.5, 0.5 + d * 0.25);
 
-    vec3 fragColor = texture2D(map, vUv).rgb;
+    vec3 fragColor = color;
 
     gl_FragColor = vec4(fragColor, mask);
   }
@@ -58,10 +56,6 @@ const frag = glsl(/* glsl */`
 
 // Your sketch, which simply returns the shader
 const sketch = async ({ gl }) => {
-  let image = await loadAsset('c.png');
-  setTimeout(async () => {
-    image = await loadAsset('b.png');
-  });
   // Create the shader and return it
   return createShader({
     clearColor: 'hsl(0, 0%, 95%)',
@@ -73,7 +67,6 @@ const sketch = async ({ gl }) => {
     uniforms: {
       // Expose props from canvas-sketch
       time: ({ time }) => time,
-      map: () => image,
       aspect: ({ width, height }) => width / height
     }
   });
