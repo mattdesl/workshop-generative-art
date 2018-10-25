@@ -1,18 +1,12 @@
-/**
- * An attempt to recreate the effect by DIA Studio Primary project
- * as a GLSL shader.
- *
- * https://www.behance.net/gallery/33134879/Primary
- */
-
 const canvasSketch = require('canvas-sketch');
 const createShader = require('canvas-sketch-util/shader');
 const glsl = require('glslify');
 
 // Setup our sketch
 const settings = {
+  dimensions: [ 1440, 900 ],
+  exportPixelRatio: 2,
   context: 'webgl',
-  dimensions: [ 1024, 1024 ],
   animate: true
 };
 
@@ -20,37 +14,25 @@ const settings = {
 const frag = glsl(`
   precision highp float;
 
-  #pragma glslify: noise = require('glsl-noise/simplex/3d');
-  #pragma glslify: hsl2rgb = require('glsl-hsl2rgb');
-
   uniform float time;
   uniform float aspect;
   varying vec2 vUv;
 
-  float circle (vec2 point) {
-    vec2 pos = vUv - point;
-    pos.x *= aspect;
-    return length(pos);
-  }
-
   void main () {
-    float distFromCenter = circle(vec2(0.5));
+    // Get a vector from current UV to (0.5, 0.5)
+    vec2 center = vUv - 0.5;
 
-    float mask = smoothstep(0.25, 0.2475, distFromCenter);
+    // Fix it for current aspect ratio
+    center.x *= aspect;
 
-    vec2 q = vUv;
-    q.x *= aspect;
+    // Get length of the vector (i.e. radius of polar coordinate)
+    float dist = length(center);
 
-    float d = 0.0;
-    d += (noise(vec3(q * 1.0, time * 0.5)) * 0.5 + 0.5) * 0.5;
-    d += (noise(vec3(q * 0.25 + 0.5, time * 0.25)) * 0.5 + 0.5) * 0.5;
-    d = clamp(d, 0.0, 1.0);
+    // Create a "mask" circle
+    float mask = smoothstep(0.2025, 0.2, dist);
 
-    vec3 color = hsl2rgb(mod(time * 0.05, 1.0) + (0.5 + d * 0.5), 0.5, 0.5 + d * 0.25);
-
-    vec3 fragColor = color;
-
-    gl_FragColor = vec4(fragColor, mask);
+    vec3 color = 0.5 + 0.5 * cos(time + vUv.xyx + vec3(0.0, 2.0, 4.0));
+    gl_FragColor = vec4(color, mask);
   }
 `);
 
@@ -58,11 +40,11 @@ const frag = glsl(`
 const sketch = ({ gl }) => {
   // Create the shader and return it
   return createShader({
-    clearColor: 'hsl(0, 0%, 95%)',
     // Pass along WebGL context
     gl,
     // Specify fragment and/or vertex shader strings
     frag,
+    clearColor: 'hsl(0, 0%, 95%)',
     // Specify additional uniforms to pass down to the shaders
     uniforms: {
       // Expose props from canvas-sketch

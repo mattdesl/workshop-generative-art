@@ -102,6 +102,7 @@ npm install point-in-polygon
 
 Below are some nice modules for creative coding & generative art:
 
+- [load-asset](https://www.npmjs.com/package/load-asset) - a utility to load images and other assets with async/await
 - [point-in-polygon](https://www.npmjs.com/package/point-in-polygon) - test if 2D point is within a polygon
 - [nice-color-palettes](https://www.npmjs.com/package/nice-color-palettes) - a collection of 1000 beautiful color palettes
 - [gl-matrix](https://www.npmjs.com/package/gl-matrix) - 2D and 3D vector & matrix math utilities
@@ -115,6 +116,7 @@ Below are some nice modules for creative coding & generative art:
 - [eases](https://www.npmjs.com/package/eases) - a set of common easing functions
 - [bezier-easing](https://www.npmjs.com/package/bezier-easing) - create cubic bezier curve functions
 - [glsl-noise](https://www.npmjs.com/package/glsl-noise) - noise functions as a GLSL module (used with glslify)
+- [glsl-hsl2rgb](https://www.npmjs.com/package/glsl-hsl2rgb) - HSL to RGB function as a GLSL module (used with glslify)
 
 # Further Reading
 
