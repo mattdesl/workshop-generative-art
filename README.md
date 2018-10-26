@@ -170,4 +170,4 @@ This repository has a dual license.
 
 The textual documentation and markdown files are all licensed as MIT.
 
-The JavaScript source files have been released under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0), see [src/LICENSE.md](./src/LICENSE.md) for details.
+The JavaScript source files have been released under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) (CC BY-NC-SA 4.0), see [src/LICENSE.md](./src/LICENSE.md) for details.
