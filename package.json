@@ -6,7 +6,6 @@
   "scripts": {},
   "keywords": [],
   "author": "Matt DesLauriers <dave.des@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "bezier-easing": "^2.1.0",
     "canvas-sketch": "0.0.27",

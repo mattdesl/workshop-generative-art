@@ -163,3 +163,11 @@ More links to generative art & creative coding:
   - [creative-dev Slack team](https://creative-dev.herokuapp.com/)
 
   - [#plottertwitter](https://twitter.com/hashtag/plottertwitter?lang=en), [#generative](https://twitter.com/hashtag/generative?lang=en), [#webgl](https://twitter.com/hashtag/webgl?lang=en) and similar hashtags on Twitter, Instagram etc.
+
+# License
+
+This repository has a dual license.
+
+The textual documentation and markdown files are all licensed as MIT.
+
+The JavaScript source files have been released under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0), see [src/LICENSE.md](./src/LICENSE.md) for details.
