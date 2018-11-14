@@ -42,7 +42,7 @@ Here is a list of tools, software and libraries that will be used during the wor
 
 Before starting the workshop, make sure you have installed and set up:
 
-- A browser, Chrome recommenedd
+- A browser, Chrome recommended
 - A code editor, VSCode recommended
 - A terminal application (like Terminal, cmder or cmd.exe)
 - Node.js 8+ and npm 5+
