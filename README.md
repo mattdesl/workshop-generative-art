@@ -29,7 +29,7 @@ Here is a list of tools, software and libraries that will be used during the wor
 | Tool | Documentation | Description |
 |---|---|---|
 | *Code Editor* | | A JavaScript code editor, [VSCode](https://code.visualstudio.com/) is recommended
-| *Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is reocmmended
+| *Browser* |  | A modern browser, [Chrome](https://www.google.com/chrome/) is recommended
 | *Canvas API* | [[docs](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)] | The HTML5 `<canvas>` API, built into all browsers 
 | *Command-Line* | [[guide](./docs/command-line.md)] | A command-line application like Terminal (macOS) or [cmder](http://cmder.net/) (Windows)
 | [Node.js](https://nodejs.org/en/) (v8+) | [[docs](https://nodejs.org/dist/latest-v8.x/docs/api/)] | Used for running command-line JavaScript tools
@@ -42,7 +42,7 @@ Here is a list of tools, software and libraries that will be used during the wor
 
 Before starting the workshop, make sure you have installed and set up:
 
-- A browser, Chrome recommenedd
+- A browser, Chrome recommended
 - A code editor, VSCode recommended
 - A terminal application (like Terminal, cmder or cmd.exe)
 - Node.js 8+ and npm 5+
