@@ -293,6 +293,18 @@ const frag = glsl(`
 `);
 ```
 
+## Looping Noise
+
+You can use the following to blend 2D noise seamlessly in a GIF/MP4 loop.
+
+```js
+function loopNoise (x, y, t, scale = 1) {
+  const duration = scale;
+  const current = t * scale;
+  return ((duration - current) * random.noise3D(x, y, current) + current * random.noise3D(x, y, current - duration)) / duration;
+}
+```
+
 ## 
 
 #### <sup>[← Back to Documentation](../README.md)
