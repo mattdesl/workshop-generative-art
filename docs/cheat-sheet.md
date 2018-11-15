@@ -242,6 +242,10 @@ You can invert this with `1.0 - v` if you need it to vary from 1, to 0, and then
 ## Isometric ThreeJS Camera
 
 ```js
+const camera = new THREE.OrthographicCamera();
+
+// ...
+
 const aspect = width / height;
 
 // Ortho zoom
