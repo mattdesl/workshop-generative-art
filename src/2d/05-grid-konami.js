@@ -46,6 +46,9 @@ const sketch = async () => {
   // We use async/await ES6 syntax to wait for the font to load
   await font.load();
 
+  // Add the loaded font to the document
+  document.fonts.add(font);
+
   // Now return a render function for the sketch
   return ({ context, width, height }) => {
     const margin = width * 0.175;
