@@ -122,6 +122,8 @@ Below are some nice modules for creative coding & generative art:
 
 More links to generative art & creative coding:
 
+- [Vanilla Canvas2D Demo](https://codepen.io/mattdesl/pen/BMGZJZ)
+
 - Generative Art
 
   - [Generative Artistry](https://generativeartistry.com/)
