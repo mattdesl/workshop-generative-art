@@ -20,6 +20,8 @@ This repository includes code & resources for students attending my *Generative 
 
 - [Cheat Sheet](#cheat-sheet)
 
+- [Exercises](#exercises)
+
 - [Further Reading](#further-reading)
 
 # Tools & Prerequisites
@@ -89,6 +91,12 @@ During the workshop, you won't need to clone and run this repository locally. Ho
 I've also included a small "cheat sheet" that you can use as a reference if you are forgetting some of the patterns and recipes discussed during the workshop.
 
 - [Cheat Sheet](./docs/cheat-sheet.md)
+
+# Exercises
+
+Below are a couple exercises you can tackle during lunch and free coding periods:
+
+- [Exercises](./docs/exercises.md)
 
 # Other Modules for Creative Coding
 
