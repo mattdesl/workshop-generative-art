@@ -168,6 +168,8 @@ More links to generative art & creative coding:
 
   - [cubic-bezier.com](http://cubic-bezier.com) — A cubic Bezier curve editor, useful alongside the [bezier-easing](https://www.npmjs.com/package/bezier-easing) module
 
+  - [ThreeJS Editor](https://threejs.org/editor/) — An online scene editor for ThreeJS
+
 - Communities
 
   - [creative-dev Slack team](https://creative-dev.herokuapp.com/)
