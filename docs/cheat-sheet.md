@@ -273,6 +273,12 @@ camera.lookAt(new THREE.Vector3());
 camera.updateProjectionMatrix();
 ```
 
+## 3D Coordinate System
+
+Here's a small reference you can use to remember XYZ axes in ThreeJS.
+
+<img src="./images/xyz-1.png" width="33%" /> <img src="./images/xyz-2.png" width="33%" />
+
 ## Third-Party GLSL Modules
 
 With [glslify](https://github.com/glslify/glslify) (built-in to canvas-sketch CLI), we can import GLSL modules and snippets directly form npm into our shader code.
