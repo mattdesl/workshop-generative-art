@@ -281,7 +281,7 @@ Here's a small reference you can use to remember XYZ axes in ThreeJS.
 
 ## Third-Party GLSL Modules
 
-With [glslify](https://github.com/glslify/glslify) (built-in to canvas-sketch CLI), we can import GLSL modules and snippets directly form npm into our shader code.
+With [glslify](https://github.com/glslify/glslify) (built-in to canvas-sketch CLI), we can import GLSL modules and snippets directly from npm into our shader code.
 
 For example, after running `npm install glsl-noise`, you can use this:
 
